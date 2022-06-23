@@ -3,9 +3,12 @@ import express from "express";
 
 import routes from "./routes";
 import { PORT } from "./constants";
+import dbConnect from "config/db.config";
 
 const main = async () => {
   const app = express();
+
+  dbConnect();
 
   app.use("/", routes);
 
