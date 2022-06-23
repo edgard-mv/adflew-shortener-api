@@ -1,3 +1,5 @@
+import { nanoid } from "nanoid/async";
+
 export const isValidHttpUrlWithTld = (
   candidateUrl: string
 ): {
@@ -26,3 +28,6 @@ export const isValidHttpUrlWithTld = (
     };
   }
 };
+
+// for collision concerns, visit https://zelark.github.io/nano-id-cc/
+export const getNewIdForUrl = () => nanoid(7);
