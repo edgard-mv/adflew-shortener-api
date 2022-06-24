@@ -9,6 +9,9 @@ pids
 *.seed
 *.pid.lock
 
+# vs code workspace
+.vscode
+
 # Dependency directories
 node_modules/
 
@@ -16,3 +19,7 @@ dist/
 
 # dotenv environment variable files
 .env
+
+# keys
+private.key
+public.key
