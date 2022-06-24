@@ -17,7 +17,12 @@ export const getUrlFromShortCode = async (req: Request, res: Response) => {
     return res.status(HttpStatusCodes.NOT_FOUND).send("URL not found");
   }
 
-  await link.populate("user", ["id", "username"]);
+  link.visits += 1;
+
+  await Promise.allSettled([
+    link.populate("user", ["id", "username"]),
+    link.save(),
+  ]);
 
   return res.json({ link });
 };
@@ -59,7 +64,7 @@ export async function createShortCode(req: Request, res: Response) {
   const link = new Link({ url, user: req.userId, shortCode });
   user.links.push(link.id);
 
-  Promise.allSettled([user.save(), link.save()]);
+  await Promise.allSettled([user.save(), link.save()]);
 
   await link.populate("user", ["username", "id"]);
 
