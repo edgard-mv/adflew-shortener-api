@@ -1,8 +1,9 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 
 interface IUser {
   username: string;
   password: string;
+  links: Types.ObjectId[];
 }
 
 const userSchema = new Schema<IUser>(
@@ -16,6 +17,7 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: true,
     },
+    links: [{ type: Schema.Types.ObjectId, ref: "Link" }],
   },
   { timestamps: true }
 );

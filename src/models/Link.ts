@@ -1,6 +1,8 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
+import userSchema from "./User";
 
 interface ILink {
+  user: Types.ObjectId;
   url: string;
   shortCode: string;
   visits: number;
@@ -8,6 +10,11 @@ interface ILink {
 
 const linkSchema = new Schema<ILink>(
   {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: userSchema.modelName,
+      required: true,
+    },
     url: {
       type: String,
       required: true,
@@ -25,6 +32,15 @@ const linkSchema = new Schema<ILink>(
   },
   { timestamps: true }
 );
+
+// Ensure virtual fields are serialized and "_id" is returned as "id".
+linkSchema.set("toJSON", {
+  virtuals: true,
+  versionKey: false,
+  transform: function (_, ret) {
+    delete ret._id;
+  },
+});
 
 linkSchema.index({ createdAt: 1 }, { expires: "7d" });
 
