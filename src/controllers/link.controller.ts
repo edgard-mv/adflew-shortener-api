@@ -28,7 +28,7 @@ export const getUrlFromShortCode = async (req: Request, res: Response) => {
 };
 
 // Return new, or retrieved, url-shortCode pair
-export async function createShortCode(req: Request, res: Response) {
+export const createShortCode = async (req: Request, res: Response) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res
@@ -69,4 +69,4 @@ export async function createShortCode(req: Request, res: Response) {
   await link.populate("user", ["username", "id"]);
 
   return res.json({ link });
-}
+};
