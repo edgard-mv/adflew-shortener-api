@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_PATH=dist node dist/app.js",
+    "build": "NODE_PATH=dist tsc",
     "watch": "NODE_PATH=dist tsc -w",
     "dev": "NODE_PATH=dist nodemon dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
