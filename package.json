@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_PATH=dist node dist/index.js",
+    "start": "NODE_PATH=dist node dist/app.js",
     "watch": "NODE_PATH=dist tsc -w",
-    "dev": "NODE_PATH=dist nodemon dist/index.js",
+    "dev": "NODE_PATH=dist nodemon dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
