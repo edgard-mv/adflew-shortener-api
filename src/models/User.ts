@@ -20,4 +20,13 @@ const userSchema = new Schema<IUser>(
   { timestamps: true }
 );
 
+// Ensure virtual fields are serialized and "_id" is returned as "id".
+userSchema.set("toJSON", {
+  virtuals: true,
+  versionKey: false,
+  transform: function (_, ret) {
+    delete ret._id;
+  },
+});
+
 export default model<IUser>("User", userSchema);
