@@ -1,16 +1,31 @@
 import "dotenv/config";
 import express from "express";
 import bodyParser from "body-parser";
+import cors from "cors";
 
 import routes from "./routes";
-import { PORT } from "./constants";
+import { PORT, ORIGIN_WHITELIST } from "./constants";
 import dbConnect from "config/db.config";
+
+const corsOptions = {
+  origin: function (
+    origin: string | undefined,
+    callback: (_: Error | null, origin?: any) => void
+  ) {
+    if (!origin || ORIGIN_WHITELIST.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
 
 const main = async () => {
   const app = express();
 
   dbConnect();
 
+  app.use(cors(corsOptions));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
 
