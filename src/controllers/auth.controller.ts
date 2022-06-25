@@ -43,7 +43,7 @@ export const logUserIn = async (req: Request, res: Response) => {
       });
     }
 
-    const isValid = await verify(password, user.password);
+    const isValid = await verify(user.password, password);
 
     if (!isValid) {
       return res.status(HttpStatusCodes.BAD_REQUEST).json({
