@@ -1,7 +1,7 @@
 import { sign, SignOptions, verify } from "jsonwebtoken";
 import { readFileSync } from "fs";
 import path from "path";
-import { PASS_PHRASE } from "../constants";
+import { PASS_PHRASE, TOKEN_EXPIRE_TIME } from "../constants";
 import Payload from "types/Payload";
 
 export const generateToken = (payload: Partial<Payload>) => {
@@ -20,7 +20,7 @@ export const generateToken = (payload: Partial<Payload>) => {
     // to generate the JWT. The client gets a public key to validate the
     // signature
     algorithm: "RS256",
-    expiresIn: "24h",
+    expiresIn: TOKEN_EXPIRE_TIME,
   };
 
   return sign(
