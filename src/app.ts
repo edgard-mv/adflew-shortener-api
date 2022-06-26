@@ -6,6 +6,7 @@ import cors from "cors";
 import routes from "./routes";
 import { PORT, ORIGIN_WHITELIST } from "./constants";
 import dbConnect from "config/db.config";
+import redirectionRouter from "routes/redirection";
 
 const corsOptions = {
   origin: function (
@@ -30,6 +31,8 @@ const main = async () => {
   app.use(bodyParser.urlencoded({ extended: true }));
 
   app.use("/api", routes);
+
+  app.use("/", redirectionRouter);
 
   app.listen(PORT, () => {
     console.log(`Server running on port: \x1b[32m${PORT}\x1b[0m`);

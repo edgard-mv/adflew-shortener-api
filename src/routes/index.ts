@@ -10,6 +10,7 @@ fs.readdirSync(__dirname).forEach(async (fileName) => {
   if (
     !routeName ||
     routeName === "index" ||
+    routeName === "redirection" ||
     fileName.split(".").at(-1) === "map"
   ) {
     return;
