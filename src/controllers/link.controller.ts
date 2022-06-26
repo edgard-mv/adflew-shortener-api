@@ -67,6 +67,13 @@ export const createShortCode = async (req: Request, res: Response) => {
 };
 
 export const redirectShortCode = async (req: Request, res: Response) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res
+      .status(HttpStatusCodes.BAD_REQUEST)
+      .json({ errors: errors.array() });
+  }
+
   const { shortCode } = req.params;
 
   const link = await Link.findOne({ shortCode });
