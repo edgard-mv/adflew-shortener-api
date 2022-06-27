@@ -14,10 +14,13 @@ const linksRouter = Router();
 
 // @route   GET api/links/:shortCode
 // @desc    Retrieve url info given corresponding shortCode
-// @access  Public
+// @access  Private
 linksRouter.get(
   "/:shortCode",
-  param("shortCode", "Invalid short code").isLength({ min: 7 }),
+  [
+    authMiddleware,
+    param("shortCode", "Invalid short code").isLength({ min: 7 }),
+  ],
   getUrlFromShortCode
 );
 
