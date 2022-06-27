@@ -2,7 +2,7 @@
 
 `adflew-shortener-api` contains an example of an Express.js project with database `models` (using Mongoose ODM).
 
-You can now try it here: `https://polar-wildwood-49676.herokuapp.com/` using `'admin'` and `'password'` as default credentials (without the single quotes).
+You can now try it on heroku: [Adflew-API](https://polar-wildwood-49676.herokuapp.com/) using `'admin'` and `'password'` as default credentials (without the single quotes).
 
 ## How to start
 
