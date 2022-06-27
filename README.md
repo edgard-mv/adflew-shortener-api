@@ -1,6 +1,6 @@
 # Node.js REST API for URL shortening
 
-`adflew-shortener-api` contains an example of a Express.js project with database `models` (using Mongoose ODM)
+`adflew-shortener-api` contains an example of an Express.js project with database `models` (using Mongoose ODM)
 
 ## How to start
 
