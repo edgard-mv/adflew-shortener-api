@@ -14,7 +14,7 @@ $ npm run build
 
 Before executing `npm start`, there is some setup that needs to be done. First we need to create a `.env` file in the root folder with the following variables:
 
-- `API_PORT`: The port in which this app will be serve
+- `PORT`: The port in which this app will be serve
 - `MONGO_DB_URI`: The database (MongoDB) connection string
 - `PASS_PHRASE`: The pass phrase associated with the private key (more on this later)
 - `ORIGIN_WHITELIST`: A comma separated list of accepted clients
