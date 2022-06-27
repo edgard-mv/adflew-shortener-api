@@ -1,7 +1,12 @@
 import { sign, SignOptions, verify } from "jsonwebtoken";
 import { readFileSync } from "fs";
 import path from "path";
-import { PASS_PHRASE, TOKEN_EXPIRE_TIME } from "../constants";
+import {
+  PASS_PHRASE,
+  PRIVATE_KEY,
+  PUBLIC_KEY,
+  TOKEN_EXPIRE_TIME,
+} from "../constants";
 import Payload from "types/Payload";
 
 export const generateToken = (payload: Partial<Payload>) => {
@@ -9,7 +14,8 @@ export const generateToken = (payload: Partial<Payload>) => {
     throw new Error("Missing pass phrase");
   }
 
-  const privateKey = readFileSync(path.join(__dirname, "./../../private.key"));
+  const privateKey =
+    PRIVATE_KEY ?? readFileSync(path.join(__dirname, "./../../private.key"));
 
   if (!privateKey) {
     throw new Error("Missing private.key file");
@@ -25,13 +31,17 @@ export const generateToken = (payload: Partial<Payload>) => {
 
   return sign(
     payload,
-    { key: privateKey, passphrase: PASS_PHRASE },
+    {
+      key: privateKey,
+      passphrase: PASS_PHRASE,
+    },
     signInOptions
   );
 };
 
 export const validateToken = (token: string): Promise<Payload> => {
-  const publicKey = readFileSync(path.join(__dirname, "./../../public.key"));
+  const publicKey =
+    PUBLIC_KEY ?? readFileSync(path.join(__dirname, "./../../public.key"));
 
   if (!PASS_PHRASE) {
     throw new Error("Missing pass phrase");
